@@ -4,13 +4,6 @@ from django.contrib import messages
 
 
 def register_user(request):
-    """
-    Функция для регистрации нового пользователя.
-
-    Если метод запроса POST, обрабатывает данные формы регистрации.
-    Проверяет совпадение паролей и наличие пользователя с таким же именем или email.
-    Если проверки пройдены, создаёт нового пользователя и перенаправляет на страницу входа.
-    """
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']

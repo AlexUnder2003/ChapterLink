@@ -4,13 +4,6 @@ from django.contrib import messages
 
 
 def login_user(request):
-    """
-    Обрабатывает вход пользователя.
-
-    Если запрос POST, проверяет учетные данные пользователя.
-    При успешной аутентификации выполняет вход в аккаунт.
-    В случае ошибки отображает сообщение.
-    """
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
