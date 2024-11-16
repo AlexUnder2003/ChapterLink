@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 from books.models import Book
 
 
-def homepage(request):
-    books_rev = Book.objects.all().order_by('-id')
-    context = {'books': books_rev}
-    return render(request, 'homepage/homepage.html', context)
+class HomepageListView(ListView):
+    model = Book
+    ordering = 'id'
+    paginate_by = 12

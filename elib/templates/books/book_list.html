@@ -62,7 +62,8 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-        {% for book in books %}
+
+        {% for book in page_obj %}
           <div class="col">
             <div class="card shadow-sm">
               <img src="{% static book.image %}" class="bd-placeholder-img card-img-top img-fluid h-50" width="100%" height="225" alt="{{ book.title }}">
@@ -93,5 +94,9 @@
       </div>
     </div>
   </div>
-
 {% endblock %}
+<div class="text-center">
+  {% block pagination %}
+    {% include 'includes/paginator.html' %}
+  {% endblock pagination %}
+</div>

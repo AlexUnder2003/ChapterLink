@@ -1,0 +1,39 @@
+<div class="text-center">
+  <nav class="my-5">
+    <ul class="pagination d-flex justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link text-danger" href="?page=1">Первая</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link text-danger" href="?page={{ page_obj.previous_page_number }}">
+            Предыдущая
+          </a>
+        </li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="page-item active">
+            <span class="page-link bg-danger border-danger">{{ i }}</span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link text-danger" href="?page={{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link text-danger" href="?page={{ page_obj.next_page_number }}">
+            Следующая
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link text-danger" href="?page={{ page_obj.paginator.num_pages }}">
+            Последняя
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
