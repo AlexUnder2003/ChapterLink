@@ -1,6 +1,7 @@
 import typesense
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.views.generic import DetailView
 
 from .models import Book
 
@@ -35,8 +36,5 @@ def search_books(request):
         return render(request, 'books/books.html', {'error': 'Произошла ошибка при поиске.'})
 
 
-
-def detailed_view(request, book_id):
-    book = get_object_or_404(Book, id=book_id)
-    return render(request, 'books/book_detail.html', {'book': book})
-
+class BookDetailView(DetailView):
+    model = Book

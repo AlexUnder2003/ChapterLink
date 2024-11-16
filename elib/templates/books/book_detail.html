@@ -10,17 +10,17 @@
   <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
     <!-- Блок с описанием книги -->
     <div class="col-lg-6">
-      <h1 class="display-6 fw-bold lh-1">{{ book.title }}</h1>
-      <h2 class="text-muted">{{ book.author }}</h2>
-      <p class="py-3">{{ book.description }}</p>
-      <h3 class="text-secondary">{{ book.published_date }}</h3>
-      <h3 class="pt-5">{{ book.full_description }}</h3>
+      <h1 class="display-6 fw-bold lh-1">{{ object.title }}</h1>
+      <h2 class="text-muted">{{ object.author }}</h2>
+      <p class="py-3">{{ object.description }}</p>
+      <h3 class="text-secondary">{{ object.published_date }}</h3>
+      <h3 class="pt-5">{{ object.full_description }}</h3>
       <div class="btn-group mt-4">
-        <a href="{% url 'books:book_detail' book.id %}">
+        <a href="#">
           <button type="button" class="btn btn-secondary btn-sm">Download</button>
         </a>
         {% if user.is_authenticated %}
-          <a href="{% url 'favourites:add_favorite_book' book.id %}">
+          <a href="{% url 'favourites:add_favorite_book' object.id %}">
             <button type="button" class="btn btn-outline-secondary btn-sm">Add to Favourites</button>
           </a>
         {% else %}
@@ -33,7 +33,7 @@
 
     <!-- Блок с изображением -->
     <div class="col-10 col-sm-8 col-lg-6">
-      <img src="{% static book.image %}" class="img-fluid" alt="{{ book.title }}">
+      <img src="{% static object.image %}" class="img-fluid" alt="{{ object.title }}">
     </div>
   </div>
 </div>
