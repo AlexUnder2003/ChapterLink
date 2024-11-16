@@ -1,0 +1,32 @@
+{% load static %}
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'homepage:home' %}"><img src="{% static 'images/home.png' %}" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+              <a class="nav-link disabled text-light" aria-disabled="true" href="{% url 'homepage:home' %}"><strong>ChapterLink</strong></a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'favourites:favourites' %}" class="nav-link text-dark"><strong>Favourites</strong></a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a href="{% url 'login:login' %}" class="nav-link text-dark"><strong>Login</strong></a>
+            </li>
+          {% endif %}
+
+          </ul>
+          <form class="d-flex" role="search" method="GET" action="{% url 'books:search_books' %}">
+            <input class="form-control me-2" style="width: 220px;" name="title" type="search" placeholder="Введите название книги " aria-label="Search" required>
+            <button class="btn btn-secondary" type="submit">Search</button>
+          </form>
+      </div>
+    </div>
+  </nav>
+</header>

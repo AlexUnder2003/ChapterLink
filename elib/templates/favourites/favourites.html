@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Favourites
+{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <h1 class="display-5 fw-bold text-start py-4">Ваши любимые книги</h1>
+
+    <!-- Блок с последней книгой -->
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        {% if latest_book %}
+          <img src="{% static latest_book.book.image %}" class="bd-placeholder-img img-fluid" width="150" height="155" alt="{{ book.title }}">
+          <h1 class="display-5 fw-bold">{{ latest_book.book.title }}</h1>
+          <p class="col-md-8 fs-4">Автор: {{ latest_book.book.author }}</p>
+          <p>Описание: {{ latest_book.book.description }}</p>
+          <p>{{ latest_book.book.full_description }}</p>
+        {% else %}
+          <p>У вас пока нет избранных книг.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Блок с остальными книгами -->
+    {% for favorite in other_books %}
+      <div class="row align-items-md-stretch py-3">
+        <div class="col-md-12">
+          <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <img src="{% static favorite.book.image %}" class="bd-placeholder-img img-fluid" width="150" height="155" alt="{{ book.title }}">
+            <h2>{{ favorite.book.title }}</h2>
+            <p>Автор: {{ favorite.book.author }}</p>
+            <p>{{ favorite.book.full_description }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

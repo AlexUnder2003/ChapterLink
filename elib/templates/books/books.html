@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  E-lib
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    {% for book in books %}
+    <div class="container">
+      <h1 class="py-3">{{ book.title }}</h1>
+      <h2 class="py-3">{{ book.author }}</h1>
+      <img src="{% static book.image %}" class="bd-placeholder-img card-img-top img-fluid h-50 w-25" width="100%" height="100" alt="{{ book.title }}">
+      <p class="py-2">{{ book.description }}</p>
+      <h3 class="py-2">{{ book.published_date }}</h3>
+      <div class="btn-group">
+        <a href="{% url 'books:book_detail' book.id %}">
+          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        </a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'favourites:add_favorite_book' book.id %}">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favourites</button>
+          </a>
+        {% else %}
+          <a href="{% url 'login:login' %}">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favourites</button>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+{% endfor %}</div>
+
+{% endblock %}

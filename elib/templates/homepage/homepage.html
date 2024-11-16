@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  ChapterLink
+{% endblock %}
+
+{% block content %}
+  <!--Carousel-->
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active bg-dark">
+        <div class="container">
+            <div class="carousel-caption text-start text-light">
+                <h1>Worldwide.</h1>
+                <p>Some representative placeholder content for the third slide of this carousel.</p>
+                <p><a class="btn btn-lg btn-secondary" href="#">Learn more</a></p>
+            </div>
+        </div>
+        <img src="{% static 'images/pexels-nietjuh-697662.jpg' %}" class="img-fluid" alt="">
+      </div>
+      <div class="carousel-item bg-dark">
+        <img src="{% static 'images/pexels-polina-zimmerman-3747468.jpg' %}" class="d-block" alt="Description of image">
+        <div class="container">
+            <div class="carousel-caption text-end text-dark">
+                <h1>Find any book you want.</h1>
+                <p>Some representative placeholder content for the second slide of the carousel.</p>
+                <p><a class="btn btn-lg btn-secondary" href="#">Learn more</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="carousel-item bg-dark">
+        <div class="container">
+            <div class="carousel-caption text-start text-light">
+                <h1>Online library.</h1>
+                <p>Some representative placeholder content for the third slide of this carousel.</p>
+                <p><a class="btn btn-lg btn-secondary" href="#">Browse gallery</a></p>
+            </div>
+        </div>
+        <img src="{% static 'images/pexels-technobulka-2908984.jpg' %}" class="img-fluid float-end" alt="">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Album -->
+  <h1 class="text-center">New Books</h1>
+  <div class="album py-5 bg-body-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+        {% for book in books %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="{% static book.image %}" class="bd-placeholder-img card-img-top img-fluid h-50" width="100%" height="225" alt="{{ book.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <p class="card-text">{{ book.description|truncatewords:7 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'books:book_detail' book.id %}">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </a>
+                    {% if user.is_authenticated %}
+                      <a href="{% url 'favourites:add_favorite_book' book.id %}">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favourites</button>
+                      </a>
+                    {% else %}
+                      <a href="{% url 'login:login' %}">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favourites</button>
+                      </a>
+                    {% endif %}
+                  </div>
+                  <small class="text-body-secondary">{{ book.published_date }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
