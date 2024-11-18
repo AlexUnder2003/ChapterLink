@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: sxkas@yandex.ru
+Date: Mon, 18 Nov 2024 10:53:47 -0000
+Message-ID: <173192722793.2680.5383983359177470004@DESKTOP-1M5UHKI>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/auth/reset/MQ/cgox9n-984d3b31329365a581f2482d208feb3f/
+
+Your username, in case you’ve forgotten: alex
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

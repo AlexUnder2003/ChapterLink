@@ -32,4 +32,4 @@ def load_books_from_json(file_path):
             print(f"Ошибка при добавлении документа {document['title']}: {e}")
 
 
-load_books_from_json('database.json')
+load_books_from_json('db.json')
