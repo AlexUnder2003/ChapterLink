@@ -7,8 +7,8 @@ class Book(models.Model):
     description = models.TextField(max_length=128)
     full_description = models.TextField(max_length=512)
     published_date = models.DateField()
-    file = models.FileField(upload_to='books/')
-    image = models.FileField(upload_to='images/')
+    file = models.FileField(upload_to="books/", blank=True)
+    image = models.FileField(upload_to="images/", blank=True)
 
     def __str__(self):
         return self.title

@@ -5,18 +5,18 @@ from django.views.generic.edit import CreateView
 from users.forms import CustomUserCreationForm
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('favourites/', include('favourites.urls', namespace='favourites')),
-    path('auth/', include('django.contrib.auth.urls')),
+    path("admin/", admin.site.urls),
+    path("favourites/", include("favourites.urls", namespace="favourites")),
+    path("auth/", include("django.contrib.auth.urls")),
     path(
-        'auth/registration/',
+        "auth/registration/",
         CreateView.as_view(
-            template_name='registration/registration_form.html',
+            template_name="registration/registration_form.html",
             form_class=CustomUserCreationForm,
-            success_url=reverse_lazy('homepage:home'),
+            success_url=reverse_lazy("homepage:home"),
         ),
-        name='registration',
+        name="registration",
     ),
-    path('books/', include('books.urls', namespace='books')),
-    path('', include('homepage.urls', namespace='homepage')),
+    path("books/", include("books.urls", namespace="books")),
+    path("", include("homepage.urls", namespace="homepage")),
 ]
